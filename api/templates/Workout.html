@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% block header %}
+{{ super() }}
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/workout.css')}}">
+{% endblock %}
+
+{% block content %}
+<article class = "message is-large">
+<div class="level-item has-text-centered">
+  <div class="message-header">
+    Daily Workout info
+  </div>
+</div>
+<form method = "POST" action="/inputFood">
+  <div class= "message is-grouped level-item has-text-centered is-medium">
+    <h2>Enter multiple entree/food items to submit to log
+      Note: Use comma to separate the items...
+    </h2>
+  </div>
+  <div class= "columns level-item has-text-centered">
+    <div class="column is-3 control">
+      <textarea name="FoodItms" class="textarea" placeholder="Enter items, use submit button below to log food..."></textarea>
+    </div>
+
+  </article>
+  <div class="column is-2  is-offset-5 level-item has-text-centered">
+    <button onclick="hidebutton()" class="button is-block is-info is-medium is-fullwidth">Submit
+  </button>
+</div>
+</form>
+
+<form method = "POST" action="/inputworkout">
+  <div class= "message is-grouped level-item has-text-centered is-medium">
+    <h2>Enter Exercises you have down in the session.
+      Note: Use comma to separate the items...
+    </h2>
+  </div>
+  <div class= "columns level-item has-text-centered">
+    <div class="column is-3 control">
+      <textarea name="excItms" class="textarea" placeholder="Enter items, use submit button below to log Exercise..."></textarea>
+    </div>
+</div>
+  <div class="column is-2  is-offset-5 level-item has-text-centered">
+    <button onclick="hidebutton()" class="button is-block is-info is-medium is-fullwidth">Submit
+  </button>
+</div>
+</form>
+
+
+<form method= "POST" action="/LogWeight">
+<div class = "message is-grouped level-item has-text-centered is-medium">
+  Log Current Weight
+</div>
+<div class="columns level-item has-text-centered">
+  <div class="column is-3 control">
+    <input class="input is-medium" name="weight" type="text" paceholder="Enter Current Weight">
+    <div class="column is-8  is-offset-2 level-item has-text-centered">
+      <button onclick="hidebutton()" class="button is-block is-info is-medium is-fullwidth">Submit
+    </button>
+  </div>
+  </div>
+
+</div>
+
+</form>
+
+<form method = "POST" action='/deletelogitem'>
+  <div class = "message is-grouped level-item has-text-centered is-medium">
+      Made a mistake logging an item?
+  </div>
+  <div class="column is-8  is-offset-2 level-item has-text-centered">
+    <button onclick="hidebutton()" class="button is-block is-info is-medium is-fullwidth">Delete An Item
+  </button>
+</div>
+</form>
+
+{% endblock %}

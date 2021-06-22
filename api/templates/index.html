@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{%block content%}
+    <div>
+        <div class= "bground">
+          <div class = "BContent">
+            <h1>WELCOME TO PRIME LIFTING</h1>
+            <div class = 'login'>
+              {%if isLogin %}
+              <a id ='log' href= "{{ url_for('auth.logout') }}">Logout</a>
+              {%else %}
+                <a id ='log' href= "{{ url_for('auth.login') }}">Login</a>
+                <a id = 'log' href= "{{ url_for('auth.signup') }}">Sign-Up</a>
+              {%endif %}
+            </div>
+          </div>
+        </div>
+        <div class = "container">
+          <div class ="card">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <div class = "content">
+              <h2>01</h2>
+              <h3>Objective</h3>
+              <p>Learn more about why this site was created</p>
+              <a href="{{ url_for('main.about') }}">Read More</a>
+            </div>
+          </div>
+          <div class ="card">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <div class = "content">
+              <h2>02</h2>
+              <h3>Statistics</h3>
+              <p>An overview of what we offer for you</p>
+              <a href="{{ url_for('main.statistics') }}">Read More</a>
+            </div>
+          </div>
+          <div class ="card">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <div class = "content">
+              <h2>03</h2>
+              <h3>Workout</h3>
+              <p>find out how to log items in the Workout Page</p>
+              <a href="{{ url_for('main.Workout') }}">Read More</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+{% endblock %}
+</html>

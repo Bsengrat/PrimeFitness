@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block content%}
+
+<div class = "level-item has-text-centered">
+    <h1>The Exercises below are what you did earilier. NOTE: you will have to Remember the time associated with the exercise</h1>
+</div>
+<div class="level-item has-text-centered">
+<form method='POST' action='/delExercise'>
+    <div class ="field has-addons">
+        <div class="control is-expanded">
+            <div class = "select is-fullwidth">
+                <select name="delExercise">
+                {%for exc in exc_list%}
+                    <option>{{exc}} </option>
+                {%endfor%}
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class ="field has-addons">
+        <div class="control is-expanded">
+            <div class = "select is-fullwidth">
+                <select name="timeExercise">
+                {%for time in exc_time_list%}
+                    <option>{{time}} </option>
+                {%endfor%}
+                </select>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class="control column is-10">
+            <button type="submit" class="button is-primary">Submit</button>
+        </div>
+    </div>
+</form>
+</div>
+
+<div class = "level-item has-text-centered">
+    <h1>The Food items you have logged below</h1>
+</div>
+<div class="level-item has-text-centered">
+<form method='POST' action='/delFoodItm'>
+    <div class ="field has-addons">
+        <div class="control is-expanded">
+            <div class = "select is-fullwidth">
+                <select name="deleLoggedFood">
+                {%for items in show_food_list%}
+                    <option>{{items}} </option>
+                {%endfor%}
+                </select>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class="control column is-10">
+            <button type="submit" class="button is-primary">Submit</button>
+        </div>
+    </div>
+</form>
+</div>
+
+
+{%endblock%}

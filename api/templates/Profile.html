@@ -1,0 +1,141 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class= "columns">
+  <div class="column">
+    <div class = "content level-left mt-4">
+      <h1 >{{name.name}}'s Profile</h1>
+    </div> 
+      <div class="control column is-half">
+        <div class = "content">
+          <h2>Name</h2>
+          <input id = "name" class="column input" type="text" placeholder={{name.name}} reandonly disabled>
+        </div>
+      </div>
+      <div class="control column is-half">
+        <div class = "content">
+          <h2>Email</h2>
+          <input id = "name2" class="column input" type="text" placeholder={{name.email}} reandonly disabled>
+        </div>
+      </div>
+      <div class="control column is-1">
+        <div class = "content">
+          <h2>Current Weight</h2>
+          <input id = "name3" class="column input" type="text" placeholder={{name.weight}} reandonly disabled>
+        </div>
+      </div>
+  </div>
+</div>
+<script src="{{url_for('static', filename='js/swapbuttons.js')}}"></script>
+
+<div class ="content is-medium">
+  <h1 class ="level-item has-text-centered">{{ name.name }}'s Daily Statistics</h1>
+  </div>
+  <div class = 'columns'>
+    <div class="column content is-3 is-offset-1">
+      <h1>Weight Status</h1>
+      <canvas id="lineChart" width ="700" height ="500"></canvas>
+
+      <script>
+        var ctx = document.getElementById('lineChart').getContext("2d");
+        var lineChart = new Chart(ctx, {
+          type: "line",
+          data: {
+            labels: {{ labels | safe }},
+            datasets: [
+              {
+                label: "Weight lbs",
+                data: {{ points | safe }},
+                fill: false,
+                borderColor: "rgb(75, 192, 192)",
+                lineTension: 0.1
+              }
+            ]
+          },
+          options: {
+            responsive: false,
+            scales: {
+              y: {
+                  beginAtZero: true,
+                  suggestedMax: 300
+              }
+          }
+            
+          }
+        });
+
+      </script>
+    </div>
+      <div class = "column is-10 content is-large ml-6">
+
+          <div class = 'column is-10 is-offset-2'>
+            <h2 class= "content">Calories Status</h2>
+          <canvas id="barChart" width = "700" height = "500"></canvas>
+          <script>
+            var ctx = document.getElementById('barChart').getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: {{ labels | safe }},
+                    datasets: [{
+                        label: 'CALORIES CONSUMED',
+                        data: {{calories_consumed_chart  | safe}},
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 206, 86, 0.2)',
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(153, 102, 255, 0.2)',
+                            'rgba(255, 159, 64, 0.2)'
+                        ],
+                        borderColor: [
+                        'rgba(255, 159, 64, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 99, 132, 1)'
+                        ],
+                        borderWidth: 1
+                    },
+                    {
+                      label: 'CALORES EXPENDED',
+                      data: {{ calories_expended_chart | safe }},
+                      backgroundColor: [
+                      'rgba(255, 159, 64, 0.2)',
+                      'rgba(153, 102, 255, 0.2)',
+                      'rgba(75, 192, 192, 0.2)',
+                      'rgba(255, 206, 86, 0.2)',
+                      'rgba(54, 162, 235, 0.2)',
+                      'rgba(255, 99, 132, 0.2)',
+      
+                      ],
+                      borderColor: [
+                          'rgba(255, 99, 132, 1)',
+                          'rgba(54, 162, 235, 1)',
+                          'rgba(255, 206, 86, 1)',
+                          'rgba(75, 192, 192, 1)',
+                          'rgba(153, 102, 255, 1)',
+                          'rgba(255, 159, 64, 1)'
+                      ],
+                    }]
+                },
+                options: {
+                    responsive: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+          </script>
+      </div>
+
+  </div>
+  
+    
+    </div>
+  </div>
+
+{% endblock %}

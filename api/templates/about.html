@@ -1,0 +1,128 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class ="content is-medium">
+  <h1 class ="level-item has-text-centered">Sample Statistics</h1>
+  </div>
+  <div class = 'columns'>
+    <div class="column is-offset-1 is-half">
+
+      <canvas id="lineChart" width ="900" height ="500"></canvas>
+      <script>
+        var ctx = document.getElementById('lineChart').getContext("2d");
+        var lineChart = new Chart(ctx, {
+          type: "line",
+          data: {
+            labels: ['2021-06-14','2021-06-15', '2021-06-16', '2021-06-17', '2021-06-18', '2021-06-19', '2021-06-20'],
+            datasets: [
+              {
+                label: "Weight lbs",
+                data: [120, 150, 175, 180, 160, 135, 190],
+                fill: false,
+                borderColor: "rgb(75, 192, 192)",
+                lineTension: 0.1
+              }
+            ]
+          },
+          options: {
+            responsive: false,
+            scales: {
+              y: {
+                  beginAtZero: true,
+                  suggestedMax: 300
+              }
+          }
+            
+          }
+        });
+
+      </script>
+    </div>
+      <div class = "column is-one-quarter content is-large mt-6 mr-6">
+        <h2>
+          line-chart to help see progress in terms of meeting your weight goals
+        </h2>
+      </div>
+
+  </div>
+  <div class='columns is-vcentered'>
+    <div class= "column is-one-quarter is-offset-1">
+      <div class ="content is-medium">
+      <h1>This Chart will help you look at the your calories consumed vs calories expended.
+        Note: calories expended will be based on your level activity based on inital settings inputed
+      </h1>
+    </div>
+    </div>
+    <div class = 'column is-8 is-offset-1'>
+    <canvas id="barChart" width = "1000" height = "500"></canvas>
+    <script>
+      var ctx = document.getElementById('barChart').getContext('2d');
+      var myChart = new Chart(ctx, {
+          type: 'bar',
+          data: {
+              labels: ['2021-06-14','2021-06-15', '2021-06-16', '2021-06-17', '2021-06-18', '2021-06-19', '2021-06-20'],
+              datasets: [{
+                  label: 'CALORIES CONSUMED',
+                  data: [2000, 1600, 2675, 1987, 2125, 2354, 1600],
+                  backgroundColor: [
+                      'rgba(255, 99, 132, 0.2)',
+                      'rgba(54, 162, 235, 0.2)',
+                      'rgba(255, 206, 86, 0.2)',
+                      'rgba(75, 192, 192, 0.2)',
+                      'rgba(153, 102, 255, 0.2)',
+                      'rgba(255, 159, 64, 0.2)'
+                  ],
+                  borderColor: [
+                  'rgba(255, 159, 64, 1)',
+                  'rgba(153, 102, 255, 1)',
+                  'rgba(75, 192, 192, 1)',
+                  'rgba(255, 206, 86, 1)',
+                  'rgba(54, 162, 235, 1)',
+                  'rgba(255, 99, 132, 1)'
+                  ],
+                  borderWidth: 1
+              },
+              {
+                label: 'CALORES EXPENDED',
+                data: [3200, 2700, 2000, 1400, 3000, 1600, 2000],
+                backgroundColor: [
+                'rgba(255, 159, 64, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 99, 132, 0.2)',
+
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+              }]
+          },
+          options: {
+              responsive: false,
+              scales: {
+                  y: {
+                      beginAtZero: true
+                  }
+              }
+          }
+      });
+    </script>
+    
+    </div>
+  </div>
+  <div class="content">
+    <h1>The various forms in the workout forms will help you Create, Update, and delete Exercises and meals.</h1>
+      <h2>
+        NOTE: ALL WORDS IN THE TEXT AREA WILL NEED TO BE SEPARATED BY A COMMA increase chance to find more items.
+      </h2>
+  </div>
+
+{% endblock %}

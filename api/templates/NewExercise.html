@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{%block content%}
+
+<div class="columns">
+    <div class = "column is-full">
+        <h2 class = "column is-full">New Exercise</h2>
+    </div>
+</div>
+<form method = "POST" action = "/postExcItem">
+    <div class= "field">
+        <label class="label">Exercise</label>
+        <div class ='control'>
+        <input class="input column is-half"  name="exercise" type="text" placeholder= "Name of Exercise">
+        </div>
+        <label class="label">Description</label>
+        <div class ='control'>
+        <input class="input column is-half" name = "description" type="text" placeholder= "Description of Exercise">
+        </div>
+        <label class="label">Mets</label>
+        <div class ='control'>
+            <input class="input column is-half" name = "Mets" type="text" 
+            placeholder= "How many METS does it burn. Example: vigrous activities set METs to 6. use whole numbers. moderate acitivty set mets to 4.">
+        </div>
+            <button onclick="hidebutton()" class="button is-block is-info is-medium">Submit
+        </button>
+    </div>
+</form>
+
+
+{% endblock %}

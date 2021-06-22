@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{%block content%}
+<div class = "container is-centered">
+    <h1>Choose the specifed Exercise</h1>
+</div>
+<form method='POST' action='/logExcsel'>
+    <div class ="field has-addons">
+        <div class="control is-expanded">
+            <div class = "select is-fullwidth">
+                <select name="selectedExercise">
+                {%for exc, value in exc_list.items()%}
+
+                    <option>{{exc}} </option>
+                {%endfor%}
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class = "container is-centered">
+        <h1>How long was the exercise. in minutes</h1>
+    </div>
+    <div class="field">
+        <div class="control">
+            <input class="input is-medium" type="text" name="numMinutes" placeholder="Enter minutes here" autofocus="">
+        </div>
+    </div>
+    <div class='column is-half'>
+        <div class="control">
+            <button type="submit" class="button is-primary">Submit</button>
+        </div>
+    </div>
+
+
+</form>
+
+<form method = "POST" action="/NewExercise">
+    <div class= "message is-grouped level-item has-text-centered is-medium">
+      <h2>Create New Exercise if you don't find it above.
+      </h2>
+    </div>
+
+    </article>
+    <div class="column is-2  is-offset-5 level-item has-text-centered">
+      <button onclick="hidebutton()" class="button is-block is-info is-medium is-fullwidth">New Excercise
+    </button>
+  </div>
+  </form>
+
+
+
+
+
+
+{%endblock%}
+

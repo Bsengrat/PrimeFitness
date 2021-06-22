@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+
+{%block content%}
+<div class = "container is-centered">
+    <h1>Choose the entree/snack you have eaten.</h1>
+</div>
+<form method='POST' action='/logfoodsel'>
+    <div class ="field has-addons">
+        <div class="control is-expanded">
+            <div class = "select is-fullwidth">
+                <select name="Meal">
+                {%for items,cal in food.items()%}
+                    <option >{{items}} </option>
+                {%endfor%}
+                </select>
+            </div>
+        </div>
+    <div class="control">
+        <button type="submit" class="button is-primary">Submit</button>
+    </div>
+</div>
+</form>
+
+
+<div class="select is-multiple">
+    <select multiple size="8">
+        {%for items,cal in food.items()%}
+        <option >{{items}} calories: {{cal}} </option>
+    {%endfor%}
+    </select>
+  </div>
+
+<form method = "POST" action="/NewFoodItem">
+    <div class= "message is-grouped level-item has-text-centered is-medium">
+      <h2>Create New Food item if you don't find it above.
+      </h2>
+    </div>
+
+    </article>
+    <div class="column is-2  is-offset-5 level-item has-text-centered">
+      <button onclick="hidebutton()" class="button is-block is-info is-medium is-fullwidth">New Food item
+    </button>
+  </div>
+  </form>
+
+
+
+{%endblock%}

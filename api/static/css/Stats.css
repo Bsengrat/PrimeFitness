@@ -1,0 +1,12 @@
+.root {
+    display:flex;
+    justify-content: space-evenly;
+}
+h1 {
+    justify-content: center;
+}
+
+.Bargraph {
+    display:flex;
+    justify-content: space-evenly;
+}

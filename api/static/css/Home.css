@@ -1,0 +1,381 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+    
+body {
+  background-color: white;
+}
+
+.Nav {
+  padding: 0.1rem;
+  font-style: italic;
+  background-color: #1A1A1A;
+  font-size: 0.7rem;
+  display: flex;
+  justify-content: center;
+}
+  
+.logo {
+  position:absolute;
+  font-size: 2rem;
+  font-style: italic;
+  margin-right: 100rem;
+  margin-top: 0.5rem;
+}
+  
+.logo a {
+  color:white;
+  text-decoration: none;
+}
+
+#navlog {
+  margin-top: 0.7rem;
+  font-size: 1rem;
+}
+
+.login1 {
+  margin-left: -10rem;
+}
+
+.login1 a {
+  display: inline-block;
+  margin-left: 3rem;
+  padding: 0.7rem 2rem;
+  background-color: rgb(206, 123, 0);
+  border-radius: 8px;
+  outline-style: solid;
+  outline-color:#1A1A1A;
+  text-decoration: none;
+  color:white;
+}
+
+.login1 a:hover {
+  animation: fade-in 0.2s;
+  animation-fill-mode: forwards;
+}
+
+.login {
+  margin-left: -10rem;
+}
+.login a {
+  padding: 1.5em 2rem;
+  font-size: 1.2em;
+}
+.NavBarLinks {
+  margin-right: 50rem;
+  margin-top: .75rem;
+}
+    
+.NavBarLinks ul {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  white-space: nowrap;
+  column-gap: 3rem;
+  margin-bottom: 1rem;
+}
+    
+.NavBarLinks ul li {
+  list-style: none;
+  padding: 0.5rem;
+  white-space: nowrap;
+}
+    
+.NavBarLinks ul li a {
+  color: white;
+  font-size: 1.3rem;
+  text-decoration: none;
+}
+    
+.bground {
+  image-rendering: -webkit-optimize-contrast;
+  background-image: url('/static/img/victor-freitas.jpg');
+  background-position: 50% 70%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 35rem;
+}
+  
+.BContent {
+  display:flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+  
+.bground .BContent h1 {
+  font-size: 3rem;
+  position: absolute;
+  color:white;
+  line-height: 17rem;
+}
+  
+.BContent .login {
+  display: flex;
+  margin-top: 12rem;
+  margin-right: 2rem;
+  z-index: 1;
+}
+  
+.login {
+  display:flex;
+  flex-direction: row;
+  
+}
+
+  
+.login button {
+  display:inline-block;
+  max-width: 7rem;
+  max-height: 3rem;
+  background-color: rgb(206, 123, 0);
+  color:white;
+  text-align: left;
+  padding-right: 0.75rem;
+  padding-left: 0.75rem;
+}
+  
+  .login a {
+    display: inline-block;
+    margin-left: 3rem;
+    padding: 1.2rem 4rem;
+    background-color: rgb(206, 123, 0);;
+    border-radius: 8px;
+    outline-style: solid;
+    outline-color:#1A1A1A;
+    text-decoration: none;
+    color:white;
+  }
+  
+  .login a:hover {
+    animation: fade-in 0.2s;
+    animation-fill-mode: forwards;
+  }
+  
+  .container {
+    margin-left: 15rem;
+    width: 1500px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+  
+  }  
+  
+  .container .card {
+    position: relative;
+    width: 400px;
+    height: 400px;
+    background: #a86e21d0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 30px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+    overflow: hidden;
+  }
+  
+  .container:hover .card {
+    opacity: 0.5;
+  }
+  
+  .container .card:hover {
+    opacity: 1;
+  }
+  .container .card span {
+    transition: 0.5;
+    opacity: 0;
+  }
+  
+  .container .card:hover span {
+    transition: 0.5;
+    opacity: 1;
+  }
+  
+  
+  .container .card::before {
+    position: absolute;
+    content: '';
+    top: 2px;
+    left: 2px;
+    bottom: 2px;
+    width: 50%;
+    background: rgba(255,255,255,0.1);
+    pointer-events: none;
+  }
+  
+  .container .card .content {
+    padding: 5rem;
+    text-align: center;
+  
+  }
+  .container .card .content h2 {
+    position: absolute;
+    right: 30px;
+    font-size: 4em;
+    font-weight: 800;
+    color: #1778ff;
+    z-index: 2;
+    opacity:0.1;
+    transition: 0.2s;
+  }
+  
+  .container .card:hover .content  h2 {
+    opacity: 1;
+    transform: translateY(-70px);
+  }
+  
+  .container .card .content h3 {
+    font-size: 2.5em;
+    color: black;
+    z-index:2;
+    opacity: 0.5;
+    letter-spacing: 1px;
+    transition: 0.5s;
+  }
+  
+  .container .card .content p, 
+  .container .card:hover .content h3{
+    opacity: 1;
+  }
+  
+  
+  .container .card .content p {
+    position: relative;
+    font-size: 1.2em;
+    color: black;
+    z-index: 2;
+    opacity: 0.5;
+    font-weight: 600;
+    letter-spacing: 1px;
+    transition: 0.5s;
+  }
+  
+  .container .card .content a {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 8px 15px;
+    background-color: white;
+    color: orange;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+  
+  .container .card span {
+    transition: 0.5;
+  }
+  
+  .container .card span:nth-child(1){
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 1%;
+    background: linear-gradient(to right, transparent, #FDBB2D);
+    animation: animate1 2s linear infinite;
+  }
+  
+  .container .card span:nth-child(2){
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: .3%;
+    height: 100%;
+    background: linear-gradient(to bottom, transparent, #FDBB2D);
+    animation: animate2 2s linear infinite;
+    animation-delay: 1s;
+  }
+  
+  .container .card span:nth-child(3){
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 1%;
+    background: linear-gradient(to left, transparent, #FDBB2D);
+    animation: animate3 2s linear infinite;
+  }
+  
+  .container .card span:nth-child(4){
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0.3%;
+    height: 100%;
+    background: linear-gradient(to top, transparent, #FDBB2D);
+    animation: animate4 2s linear infinite;
+    animation-delay: 1s;
+  }
+  
+  .footContainer {
+    position: relative;
+    min-height: 100vh;
+  }
+  .footer {
+    padding: 1em;
+    width: 100%;
+    bottom:0;
+    left:0;
+    right:0;
+    background-color: #1A1A1A;
+    color: white;
+    text-align: center;
+    align-content: center;
+  }
+  
+  @keyframes animate1 {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(100%);
+    }
+  }
+  
+  @keyframes animate2 {
+    0% {
+      transform: translateY(-100%);
+    }
+    100% {
+      transform: translateY(100%);
+    }
+  }
+  
+  @keyframes animate3 {
+    0% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+  
+  @keyframes animate4 {
+    0% {
+      transform: translateY(100%);
+    }
+    100% {
+      transform: translateY(-100%);
+    }
+  }
+  
+  @keyframes fade-in {
+    0% {
+      background: linear-gradient(90deg, #FDBB2D 0%, #3A1C71 70%);
+    }
+    20% {
+      background: linear-gradient(90deg, #FDBB2D 0%, #3A1C71 50%);
+    }
+    40% {
+      background: linear-gradient(90deg, #FDBB2D 0%, #3A1C71 30%);
+    }
+    60% {
+      background: linear-gradient(90deg, #FDBB2D 0%, #3A1C71 20%);
+    }
+    100% {
+      background: linear-gradient(90deg, #FDBB2D 0%, #3A1C71 0%);
+    }
+  }
+  
