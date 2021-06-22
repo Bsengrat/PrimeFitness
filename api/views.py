@@ -141,14 +141,12 @@ def logExercise():
     
     for stat in stats:
         if stat.fk__UserID == current_user.id and stat.stat_Date == today:
-            print('hello')
             stat.DailyWorkout.append(daily_workout(fk_Exercise_ID = p.Exercise_ID, minutes = numMinutes))
             stat.total_Calories_expended += (p.Calories_BURN * int(numMinutes))
             db.session.commit()
             return render_template('Workout.html', isLogin = isLog)
 
 
-    print('hllelialskjdf')
     new_stat_record = Statistics(stat_Date = date.today(),
             total_Calories_expended = (p.Calories_BURN * int(numMinutes) + BMR), 
             Total_Calories_Consumed = 0)   
@@ -242,11 +240,21 @@ def inputExercise():
     kg = 0.453592
 
 
+    if exercise:
+        user_exc_list = list(exercise.split(','))
+    else:
+        user_exc_list = []
+        show_exc_list = {}
+
     for x in exc_list:
-            if re.search(exercise, x.Name):
+        for item in user_exc_list:
+            print(item.lower(), '   ', x.Name)
+            if re.search(x.Name, item):
                 mets_formula = (x.Calories_BURN * 3.5 * (current_user.weight * kg)/ 200)
                 show_exc_list[x.Name] = round(mets_formula, 2)
+                break
 
+    print(show_exc_list)
 
     return render_template('inputworkout.html', exc_list = show_exc_list, isLogin = isLog)
 
@@ -263,7 +271,7 @@ def NewExcItem():
     mets = request.form.get('Mets')
 
 
-    new_exercise = Exercise(Description = description, Name = exercise, Calories_BURN = mets)
+    new_exercise = Exercise(Description = description, Name = exercise.lower(), Calories_BURN = mets)
 
     db.session.add(new_exercise)
     db.session.commit()
@@ -281,7 +289,6 @@ def logWeight():
     
     for stat in statWeight_list:
         if current_user.id == stat.fk_id and today == stat.Stat_DATE:
-            print(stat.Stat_DATE)
             stat.Weight = user_weight
             current_user.weight = user_weight
             db.session.commit()
@@ -301,7 +308,6 @@ def logWeight():
 def deletePage():
     DailyFoodLog = logged_food.query.all()
     DailyExcLog = daily_workout.query.all()
-    food_list = Food.query.all()
     stat_Log = Statistics.query.all()
     exc_time_list = []
     exc_list = []
@@ -314,13 +320,11 @@ def deletePage():
             for Exc in DailyExcLog:
                 if stats.Stat_id == Exc.fk_stat_ID:
                     exc_item = Exercise.query.get(Exc.fk_Exercise_ID)
-                    print(exc_item.Name)
                     exc_list.append(exc_item.Name)
                     exc_time_list.append(Exc.minutes)
             for FoodItm in DailyFoodLog:
                 if stats.Stat_id == FoodItm.fk_Statistics and stats.stat_Date == today:
                         food_item = Food.query.get(FoodItm.fk_Food_Index)
-                        print(food_item)
                         show_food_list.append(food_item.Display_name)
                     
 
