@@ -195,7 +195,7 @@ def logfoodselection():
     return render_template('Workout.html', isLogin = isLog)
 
 
-@main.route('/inputFood', methods = ['POST'])
+@main.route('/workout/inputFood', methods = ['POST'])
 def getFoodItems():
     foods = request.form.get('FoodItms')
     item_list = Food.query.all()
@@ -214,12 +214,12 @@ def getFoodItems():
     return render_template('FoodSelection.html', food= food_output_list, isLogin = isLog)
 
 
-@main.route('/NewFoodItem', methods = ['POST'])
+@main.route('/workout/inputFood/NewFoodItem', methods = ['POST'])
 def inputNFoodInfo():
-    return render_template('newFoodItem.html')
+    return render_template('newFoodItem.html', isLogin = isLog)
 
 
-@main.route('/postFoodItem', methods = ['POST'])
+@main.route('/workout/inputFood/NewFoodItem/postFoodItem', methods = ['POST'])
 def postFoodItem():
     foodName = request.form.get('foodName')
     foodCal = request.form.get('calories')
@@ -233,7 +233,7 @@ def postFoodItem():
     return render_template('Workout.html', isLogin = isLog)
 
 
-@main.route('/inputworkout', methods = ['POST'])
+@main.route('/workout/inputworkout', methods = ['POST'])
 def inputExercise():
     exercise = request.form.get('excItms')
     exc_list = Exercise.query.all()
@@ -258,12 +258,12 @@ def inputExercise():
     return render_template('inputworkout.html', exc_list = show_exc_list, isLogin = isLog)
 
 
-@main.route('/NewExercise', methods = ['POST'])
+@main.route('/workout/inputworkout/NewExercise', methods = ['POST'])
 def ExcInfo():
     return render_template('NewExercise.html', isLogin = isLog)
 
 
-@main.route("/postExcItem", methods = ['POST'])
+@main.route("/workout/inputworkout/NewExercise/postExcItem", methods = ['POST'])
 def NewExcItem():
     exercise = request.form.get('exercise')
     description = request.form.get('description')
@@ -279,7 +279,7 @@ def NewExcItem():
 
 
 
-@main.route("/LogWeight", methods = ['POST'])
+@main.route("/workout/LogWeight", methods = ['POST'])
 @login_required
 def logWeight():
     weight = request.form.get('weight')
@@ -304,7 +304,7 @@ def logWeight():
     return render_template('Workout.html', isLogin = isLog)
 
 
-@main.route("/deletelogitem", methods = ['POST'])
+@main.route("/workout/deletelogitem", methods = ['POST'])
 @login_required
 def deletePage():
     DailyFoodLog = logged_food.query.all()
