@@ -150,7 +150,7 @@ def logExercise():
     new_stat_record = Statistics(stat_Date = date.today(),
             total_Calories_expended = (p.Calories_BURN * int(numMinutes) + BMR), 
             Total_Calories_Consumed = 0)   
-    new_stat_record.DailyWorkout.append(daily_workout(fk_Exercise_ID = p.Exercise_ID, minutes = numMinutes))
+    new_stat_record.DailyWorkout.append(daily_workout(fk_Exercise_ID = p.Exercise_ID, minutes = numMinutes, isLogin = isLog))
     
     
     current_user.Statistics.append(new_stat_record)
@@ -187,6 +187,7 @@ def logfoodselection():
                         total_Calories_expended = BMR, Total_Calories_Consumed = gotitem.Calories)
 
     #extends the relationship between the User and Statistics class and commits it to the db...
+    new_stat_record.LoggedFood.append(logged_food(fk_Food_Index = gotitem.index_id))
     current_user.Statistics.append(new_stat_record)
     db.session.add(new_stat_record)
     db.session.commit()
@@ -210,7 +211,7 @@ def getFoodItems():
             if re.search(food.lower(), item.Display_name):
                 food_output_list[item.Display_name] = item.Calories
                 break
-    return render_template('FoodSelection.html', food= food_output_list)
+    return render_template('FoodSelection.html', food= food_output_list, isLogin = isLog)
 
 
 @main.route('/NewFoodItem', methods = ['POST'])
@@ -254,8 +255,6 @@ def inputExercise():
                 show_exc_list[x.Name] = round(mets_formula, 2)
                 break
 
-    print(show_exc_list)
-
     return render_template('inputworkout.html', exc_list = show_exc_list, isLogin = isLog)
 
 
@@ -281,6 +280,7 @@ def NewExcItem():
 
 
 @main.route("/LogWeight", methods = ['POST'])
+@login_required
 def logWeight():
     weight = request.form.get('weight')
     user_weight = int(weight)
@@ -305,6 +305,7 @@ def logWeight():
 
 
 @main.route("/deletelogitem", methods = ['POST'])
+@login_required
 def deletePage():
     DailyFoodLog = logged_food.query.all()
     DailyExcLog = daily_workout.query.all()
@@ -320,16 +321,18 @@ def deletePage():
             for Exc in DailyExcLog:
                 if stats.Stat_id == Exc.fk_stat_ID:
                     exc_item = Exercise.query.get(Exc.fk_Exercise_ID)
+                    print(Exc.workout_ID)
                     exc_list.append(exc_item.Name)
                     exc_time_list.append(Exc.minutes)
             for FoodItm in DailyFoodLog:
+                print(FoodItm.fk_Food_Index)
                 if stats.Stat_id == FoodItm.fk_Statistics and stats.stat_Date == today:
                         food_item = Food.query.get(FoodItm.fk_Food_Index)
                         show_food_list.append(food_item.Display_name)
                     
 
     return render_template('delLogitem.html', exc_list = exc_list, exc_time_list = exc_time_list, 
-                                show_food_list = show_food_list)
+                                show_food_list = show_food_list, isLogin = isLog)
 
 
 @main.route('/delFoodItm', methods= ['POST'])
@@ -355,10 +358,10 @@ def delfoodItm():
             db.session.delete(x)
             db.session.commit()
 
-            return render_template('Workout.html')
+            return render_template('Workout.html', isLogin = isLog)
 
 
-    return render_template('Workout.html')
+    return render_template('Workout.html', isLogin = isLog)
 
 
     for stats in stat_list:
@@ -374,25 +377,28 @@ def delItem():
     stat_list = Statistics.query.all()
     kg = 0.453592
 
+
     for stats in stat_list:
         if current_user.id == stats.fk__UserID and stats.stat_Date == today:
             current_stats = stats
 
 
-    for x in DailyExcLog:
+    for dailylogItm in DailyExcLog:
         for exc in Exercise_list:
-            if x.fk_Exercise_ID == exc.Exercise_ID:
+            print(dailylogItm.minutes)
+            if dailylogItm.fk_Exercise_ID == exc.Exercise_ID and dailylogItm.minutes == int(time):
+                print('a;lfkjsa;kljfkdsjfkjjjjj')
                 mets_formula = (exc.Calories_BURN * 3.5 * (current_user.weight * kg)/ 200)
                 calories_Expended = mets_formula * float(time)
                 current_stats.total_Calories_expended -= calories_Expended
-                db.session.delete(x)
+                db.session.delete(dailylogItm)
                 db.session.commit()
 
-                return render_template('Workout.html')
+                return render_template('Workout.html', isLogin = isLog)
                 
 
 
-    return render_template('Workout.html')
+    return render_template('Workout.html', isLogin = isLog)
     
 
 
